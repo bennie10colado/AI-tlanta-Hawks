@@ -1,0 +1,65 @@
+﻿Listagem de caminhos de pasta
+O número de série do volume é 2218-F7DD
+C:.
+│   .gitignore
+│   estrutura.txt
+│   README.md
+│   requirements.txt
+│   run.py
+│   
+├───data
+│       clean_games_2023-24.csv
+│       clean_games_2024-25.csv
+│       games_2023-24.csv
+│       games_2024-25.csv
+│       nba_hawks_stats.csv
+│       nba_teams.csv
+│       team_stats_2023-24.csv
+│       team_stats_2024-25.csv
+│       
+├───docs
+│       Projeto - Parte 1.pdf
+│       Projeto - Parte 2.pdf
+│       Projeto - Parte 3.pdf
+│       
+├───scripts
+│   │   analyze_data.py
+│   │   visualize_data.py
+│   │   
+│   ├───analysis
+│   │   ├───players
+│   │   │       analyze_players.py
+│   │   │       career_comparison.py
+│   │   │       individual_performance.py
+│   │   │       
+│   │   └───teams
+│   │           analyze_team_performance.py
+│   │           defensive_stats.py
+│   │           games_summary.py
+│   │           offensive_stats.py
+│   │           
+│   ├───dashboard
+│   │       app.py
+│   │       
+│   ├───data_engineering
+│   │       clean_data.py
+│   │       fetch_nba_standings.py
+│   │       fetch_nba_teams.py
+│   │       fetch_team_games.py
+│   │       
+│   ├───models
+│   │       gamlss_prediction.py
+│   │       gumbel_model.py
+│   │       linear_regression.py
+│   │       logistic_regression.py
+│   │       
+│   └───visualization
+│       ├───players
+│       │       generate_player_charts.py
+│       │       player_dashboard.py
+│       │       
+│       └───teams
+│               generate_team_charts.py
+│               team_dashboard.py
+│               
+└───venv
