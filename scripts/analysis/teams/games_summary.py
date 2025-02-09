@@ -23,14 +23,14 @@ def generate_games_summary(season):
 
         # Criar resumo dos jogos
         df_summary = df_hawks[["GAME_DATE", "OPPONENT", "WL", "HOME_AWAY", "PTS", "PTS_OPP"]]
-        df_summary.rename(columns={
-            "GAME_DATE": "Data do Jogo",
+
+        df_summary = df_summary.rename(columns={"GAME_DATE": "Data do Jogo",
             "OPPONENT": "Adversário",
             "WL": "Vitória/Derrota",
             "HOME_AWAY": "Casa/Fora",
             "PTS": "Placar Atlanta Hawks",
-            "PTS_OPP": "Placar Adversário"
-        }, inplace=True)
+            "PTS_OPP": "Placar Adversário"})
+
 
         df_summary.to_csv(f"data/games_summary_{season}.csv", index=False)
         print(f"✅ Resumo dos jogos salvo em data/games_summary_{season}.csv")

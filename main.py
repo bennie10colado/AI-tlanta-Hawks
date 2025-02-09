@@ -48,8 +48,12 @@ if __name__ == "__main__":
     for season in ["2023-24", "2024-25"]:
         executar_modulo(f"Análise de Desempenho do Time (RF3) - {season}", lambda: analyze_team_performance(season))
 
-    executar_modulo("Estatísticas Ofensivas (RF4, RF5)", generate_offensive_stats)
-    executar_modulo("Estatísticas Defensivas (RF6)", generate_defensive_stats)
+    executar_modulo("Estatísticas Ofensivas (RF4, RF5)", lambda: generate_offensive_stats("2023-24"))
+    executar_modulo("Estatísticas Ofensivas (RF4, RF5)", lambda: generate_offensive_stats("2024-25"))
+    
+    executar_modulo("Estatísticas Defensivas (RF6)", lambda: generate_defensive_stats("2023-24"))
+    executar_modulo("Estatísticas Defensivas (RF6)", lambda: generate_defensive_stats("2024-25"))
+
 
     for season in ["2023-24", "2024-25"]:
         executar_modulo(f"Resumo dos Jogos (RF7) - {season}", lambda: generate_games_summary(season))
