@@ -3,7 +3,7 @@
 import pandas as pd
 import os
 
-def generate_offensive_stats(season="2023-24"):
+def generate_offensive_stats(season):
     file_path = f"data/clean_games_{season}.csv"
 
     try:
