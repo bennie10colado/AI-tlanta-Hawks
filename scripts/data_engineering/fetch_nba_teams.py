@@ -1,7 +1,7 @@
 import pandas as pd
 from nba_api.stats.static import teams
 
-#RF1
+# RF1 - PROJ 1
 def fetch_nba_teams():
     """ Obtém e salva a lista de times da NBA agrupados por Conferência. """
     nba_teams = teams.get_teams()

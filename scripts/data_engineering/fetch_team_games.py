@@ -1,6 +1,7 @@
 import pandas as pd
 from nba_api.stats.endpoints import leaguegamefinder
 
+# RF7 - PROJ 1
 def fetch_team_games(team_id, season='2023-24'):
     """ Obtém jogos de um time específico e salva os dados em CSV. """
     gamefinder = leaguegamefinder.LeagueGameFinder(team_id_nullable=team_id, season_nullable=season)

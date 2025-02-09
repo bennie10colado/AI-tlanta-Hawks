@@ -1,7 +1,7 @@
 import requests
 import pandas as pd
 
-#RF2
+# RF2 - PROJ 1
 def fetch_nba_standings():
     """ Obtém a classificação atual da NBA por conferência e salva em CSV. """
     API_URL = "https://stats.nba.com/stats/leaguestandings"
