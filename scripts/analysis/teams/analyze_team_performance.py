@@ -2,7 +2,8 @@
 import pandas as pd
 import os
 
-def analyze_team_performance(season):
+def analyze_team_performance(season, team_name="Atlanta Hawks"):
+    """Obtém estatísticas do time e salva em CSV."""
     file_path = f"data/clean_games_{season}.csv"
     output_path = f"data/team_stats_{season}.csv"
 
@@ -18,29 +19,31 @@ def analyze_team_performance(season):
         # Garantir que as colunas essenciais estão no dataset
         colunas_necessarias = ["TEAM", "HOME_AWAY", "WIN"]
         colunas_faltando = [col for col in colunas_necessarias if col not in df.columns]
-        
+
         if colunas_faltando:
             raise ValueError(f"🚨 O dataset não contém as colunas necessárias: {colunas_faltando}")
 
-        # Filtrar apenas jogos do Atlanta Hawks
-        df_team = df[df["TEAM"] == "Atlanta Hawks"]
+        # Filtrar apenas jogos do time desejado
+        df_team = df[df["TEAM"].str.contains(team_name, case=False, na=False)]
 
-        # Contagem de total de jogos
-        total_jogos = len(df_team)
+        if df_team.empty:
+            raise ValueError(f"🚨 Nenhum jogo encontrado para o time {team_name} na temporada {season}.")
 
         # Contagem de vitórias e derrotas
         total_vitorias = df_team["WIN"].sum()
-        total_derrotas = total_jogos - total_vitorias
-
+        total_derrotas = len(df_team) - total_vitorias  # Evita contagem errada de jogos
+        
         # Contagem de vitórias e derrotas separadas por casa e fora
-        vitorias_casa = df_team[(df_team["WIN"] == 1) & (df_team["HOME_AWAY"] == "Home")].shape[0]
-        vitorias_fora = df_team[(df_team["WIN"] == 1) & (df_team["HOME_AWAY"] == "Away")].shape[0]
-        derrotas_casa = df_team[(df_team["WIN"] == 0) & (df_team["HOME_AWAY"] == "Home")].shape[0]
-        derrotas_fora = df_team[(df_team["WIN"] == 0) & (df_team["HOME_AWAY"] == "Away")].shape[0]
+        vitorias_casa = df_team[(df_team["WIN"] == 1) & (df_team["HOME_AWAY"].str.lower() == "home")].shape[0]
+        vitorias_fora = df_team[(df_team["WIN"] == 1) & (df_team["HOME_AWAY"].str.lower() == "away")].shape[0]
+        derrotas_casa = df_team[(df_team["WIN"] == 0) & (df_team["HOME_AWAY"].str.lower() == "home")].shape[0]
+        derrotas_fora = df_team[(df_team["WIN"] == 0) & (df_team["HOME_AWAY"].str.lower() == "away")].shape[0]
 
         # Criar dicionário com estatísticas corrigidas
         stats = {
-            "Total Jogos": [total_jogos],
+            #"Temporada": [season],
+            #"Time": [team_name],
+            "Total Jogos": [total_vitorias + total_derrotas],
             "Total Vitórias": [total_vitorias],
             "Vitórias Casa": [vitorias_casa],
             "Vitórias Fora": [vitorias_fora],
@@ -54,10 +57,11 @@ def analyze_team_performance(season):
         os.makedirs("data", exist_ok=True)  # Criar diretório caso não exista
         stats_df.to_csv(output_path, index=False)
 
-        print(f"✅ Estatísticas do time salvas em {output_path}!")
+        print(f"✅ Estatísticas do time {team_name} para {season} salvas em {output_path}!")
+        print(stats_df)
 
     except Exception as e:
-        print(f"❌ Erro ao processar estatísticas do time: {e}")
+        print(f"❌ Erro ao processar estatísticas do time {team_name}: {e}")
 
 if __name__ == "__main__":
     analyze_team_performance("2023-24")

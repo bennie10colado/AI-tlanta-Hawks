@@ -4,16 +4,20 @@ import logging
 import streamlit as st
 from scripts.visualization.teams.team_dashboard import start_dashboard
 
+# Importação dos módulos de engenharia de dados
 from scripts.data_engineering.fetch_nba_teams import fetch_nba_teams
 from scripts.data_engineering.fetch_nba_standings import fetch_nba_standings
 from scripts.data_engineering.fetch_team_games import fetch_team_games
 from scripts.data_engineering.clean_nba_data import clean_nba_data
 
+# Importação dos módulos de análise de dados
 from scripts.analysis.teams.analyze_team_performance import analyze_team_performance
 from scripts.analysis.teams.offensive_stats import generate_offensive_stats
+from scripts.analysis.teams.rebound_stats import generate_rebound_stats
 from scripts.analysis.teams.defensive_stats import generate_defensive_stats
 from scripts.analysis.teams.games_summary import generate_games_summary
 
+# Importação dos módulos de visualização
 from scripts.visualization.teams.generate_team_charts import generate_team_charts
 
 # Criar a pasta `logs/`
@@ -47,13 +51,9 @@ if __name__ == "__main__":
     # 🚀 2. Análise de Dados
     for season in ["2023-24", "2024-25"]:
         executar_modulo(f"Análise de Desempenho do Time (RF3) - {season}", lambda: analyze_team_performance(season))
-
-    executar_modulo("Estatísticas Ofensivas (RF4, RF5)", lambda: generate_offensive_stats("2023-24"))
-    executar_modulo("Estatísticas Ofensivas (RF4, RF5)", lambda: generate_offensive_stats("2024-25"))
-    
-    executar_modulo("Estatísticas Defensivas (RF6)", lambda: generate_defensive_stats("2023-24"))
-    executar_modulo("Estatísticas Defensivas (RF6)", lambda: generate_defensive_stats("2024-25"))
-
+        executar_modulo(f"Estatísticas Ofensivas (RF4) - {season}", lambda: generate_offensive_stats(season))
+        executar_modulo(f"Divisão de Estatísticas (RF5) - {season}", lambda: generate_rebound_stats(season))
+        executar_modulo(f"Estatísticas Defensivas (RF6) - {season}", lambda: generate_defensive_stats(season))
 
     for season in ["2023-24", "2024-25"]:
         executar_modulo(f"Resumo dos Jogos (RF7) - {season}", lambda: generate_games_summary(season))

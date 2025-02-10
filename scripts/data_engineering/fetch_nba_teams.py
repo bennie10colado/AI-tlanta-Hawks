@@ -10,8 +10,8 @@ def fetch_nba_teams():
             raise ValueError("Nenhum time foi retornado pela API.")
 
         df_teams = pd.DataFrame(nba_teams)
-
-        # Definir conferências manualmente
+        #print("TIMES: ", nba_teams)
+        # Definindo as conferências manualmente
         east_teams = [
             "Atlanta Hawks", "Boston Celtics", "Brooklyn Nets", "Charlotte Hornets",
             "Chicago Bulls", "Cleveland Cavaliers", "Detroit Pistons", "Indiana Pacers",
