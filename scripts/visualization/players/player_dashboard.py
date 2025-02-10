@@ -29,7 +29,7 @@ def start_player_dashboard():
     player_career_comparison_path = f"data/player_career_comparison_{season}.csv"
 
     # 🚀 Criando abas de navegação
-    tab1, tab2, tab3 = st.tabs(["📊 Estatísticas Individuais", "📈 Gráficos de Desempenho", "🏆 Comparação de Carreira"])
+    tab1, tab2, tab3, tab4 = st.tabs(["📊 Estatísticas Individuais", "📈 Gráficos de Desempenho", "🏆 Comparação de Carreira", "Calculos com dados dos jogadores"])
 
     # 📊 ABA 1 - Estatísticas dos Jogadores
     with tab1:
@@ -67,7 +67,7 @@ def start_player_dashboard():
         st.write("### 📊 Quantidade de Jogos Dentro e Fora de Casa RF4")
         st.write(df_filtered)
 
-        # Criar gráfico de barras
+# Criar gráfico de barras
         fig, ax = plt.subplots(figsize=(5, 3))
         home_away_counts.plot(kind="bar", color=["blue", "red"], ax=ax)
         ax.set_ylabel("Número de Jogos")
@@ -84,7 +84,7 @@ def start_player_dashboard():
         charts = {
             "Distribuição de Pontos por Jogo (Média, Mediana e Moda)": f"{image_dir}/distribuicao_pontos.png",
             "Distribuição de Rebotes por Jogo (Média, Mediana e Moda)": f"{image_dir}/distribuicao_rebotes.png",
-            "Distribuição de Assistências por Jogo (Média, Mediana e Moda)": f"{image_dir}/distribuicao_assistencias.png",
+            "Distribuição de Assistências por Jogo (Média, Mediana e Moda)": f"{image_dir}/distribuicao_assistências.png",
             "Box Plot - Pontos, Rebotes e Assistências por Jogo": f"{image_dir}/boxplot_stats.png"
         }
 
@@ -105,6 +105,36 @@ def start_player_dashboard():
             st.dataframe(df_career_comparison, height=200)
         else:
             st.warning("⚠ Arquivo de comparação de carreira não encontrado!")
+
+    # ABA 4 - informacoes dos jogadores
+    with tab4:
+        df_stats = load_data("data/player_statistics_"+season+".csv")
+
+        if df_stats is not None:
+            # Exibir as estatísticas em uma tabela
+            st.subheader(f"📋 Estatísticas dos Jogadores ({season})")
+            st.dataframe(df_stats)
+
+            # Mostrar as métricas calculadas: Média, Mediana, Moda, Desvio Padrão
+            st.write(f"**Média de Pontos:** {df_stats['Média Pontos'].values[0]}")
+            st.write(f"**Média de Rebotes:** {df_stats['Média Rebotes'].values[0]}")
+            st.write(f"**Média de Assistências:** {df_stats['Média Assistências'].values[0]}")
+
+            # Exibir as porcentagens abaixo da média
+            st.write(f"**Porcentagem de Pontos abaixo da Média:** {df_stats['Pct. Abaixo Média Pontos'].values[0]:.2f}%")
+            st.write(f"**Porcentagem de Rebotes abaixo da Média:** {df_stats['Pct. Abaixo Média Rebotes'].values[0]:.2f}%")
+            st.write(f"**Porcentagem de Assistências abaixo da Média:** {df_stats['Pct. Abaixo Média Assistências'].values[0]:.2f}%")
+
+            # Outras métricas como Mediana, Moda, Desvio Padrão podem ser mostradas de maneira semelhante
+            st.write(f"**Moda de Pontos:** {df_stats['Moda Pontos'].values[0]}")
+            st.write(f"**Moda de Rebotes:** {df_stats['Moda Rebotes'].values[0]}")
+            st.write(f"**Moda de Assistências:** {df_stats['Moda Assistências'].values[0]}")
+            st.write(f"**Desvio Padrão de Pontos:** {df_stats['Desvio Padrão Pontos'].values[0]:.2f}")
+            st.write(f"**Desvio Padrão de Rebotes:** {df_stats['Desvio Padrão Rebotes'].values[0]:.2f}")
+            st.write(f"**Desvio Padrão de Assistências:** {df_stats['Desvio Padrão Assistências'].values[0]:.2f}")
+        else:
+            st.warning("Nenhuma estatística disponível para exibição.")
+
 
     st.write("📊 Os gráficos e estatísticas são gerados automaticamente e exibidos no dashboard.")
 
