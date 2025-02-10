@@ -1,7 +1,6 @@
 import pandas as pd
 import numpy as np
 import os
-from scipy import stats
 
 def preprocess_data(season="2024-25"):
     """
@@ -25,14 +24,19 @@ def preprocess_data(season="2024-25"):
 
     df["Minutos"] = df["Tempo de Permanência do Jogador em Quadra"].astype(str).apply(convert_time_to_minutes)
 
-    # Normalização de variáveis
-    for col in ["Pontos", "Rebotes", "Assistências"]:
-        df[col] = (df[col] - df[col].mean()) / df[col].std()
+    # Selecionar apenas colunas numéricas
+    numeric_cols = ["Pontos", "Rebotes", "Assistências", "Tentativas de 3 PTS", "Cestas de 3 PTS", "Minutos"]
 
-    # Tratamento de valores ausentes
-    df.fillna(df.median(), inplace=True)
+    # Normalização das variáveis numéricas
+    df[numeric_cols] = (df[numeric_cols] - df[numeric_cols].mean()) / df[numeric_cols].std()
 
+    # Tratamento de valores ausentes apenas em colunas numéricas
+    df[numeric_cols] = df[numeric_cols].fillna(df[numeric_cols].median())
+
+    # Criar diretório "data" caso não exista
     os.makedirs("data", exist_ok=True)
+
+    # Salvar os dados pré-processados
     df.to_csv(output_path, index=False)
 
     print(f"✅ Dados pré-processados salvos em {output_path}!")
