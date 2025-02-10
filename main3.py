@@ -25,6 +25,6 @@ if __name__ == "__main__":
     executar_modulo("Pré-processamento de Dados", preprocess_data)
     executar_modulo("Análise Estatística (Gumbel)", gumbel_analysis)
     executar_modulo("Regressão Linear", linear_regression_analysis)
-    #executar_modulo("Regressão Logística", logistic_regression_analysis)
+    executar_modulo("Regressão Logística", logistic_regression_analysis)
 
     print("\n✅ Pipeline concluído com sucesso! 🎉")
