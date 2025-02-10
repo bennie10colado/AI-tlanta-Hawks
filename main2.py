@@ -7,6 +7,7 @@ from scripts.visualization.players.player_dashboard import start_player_dashboar
 # Importação dos módulos de engenharia de dados
 from scripts.data_engineering.fetch_nba_players import fetch_nba_players
 from scripts.data_engineering.fetch_player_game_logs import fetch_player_game_logs
+from scripts.data_engineering.fetch_game_logs import load_game_logs
 
 # Importação dos módulos de análise de dados
 from scripts.analysis.players.analyze_player_performance import analyze_player_statistics
@@ -44,7 +45,9 @@ if __name__ == "__main__":
     # 🚀 2. Análise de Dados
     executar_modulo("Filtragem de Jogos Específicos (RF3)", lambda: filter_player_games(season="2024-25"))
 
-    executar_modulo("Análise Estatística dos Jogadores (RF4 - RF8)", lambda: analyze_player_statistics(season="2024-25"))
+    executar_modulo("Jogos dentro e fora de casa (RF4)", lambda: load_game_logs(season="2024-25"))
+
+    executar_modulo("Análise Estatística dos Jogadores (RF5 - RF8)", lambda: analyze_player_statistics(season="2024-25"))
     executar_modulo("Comparação de Estatísticas de Carreira (RF9, RF10)", lambda: fetch_player_career_stats(season="2024-25"))
 
     # 🚀 3. Geração de Gráficos
