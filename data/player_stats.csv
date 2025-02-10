@@ -1,4 +1,4 @@
-,ID,Nome,Altura,Peso,Idade,Experiência,Posição,Universidade,Salário
-0,203991,Clint Capela,Elan Chalon/Switzerland,6-10,clint-capela,256,15,Elan Chalon,Y
-1,1629027,Trae Young,Oklahoma/USA,6-1,trae-young,164,11,Oklahoma,Y
-2,1630552,Jalen Johnson,Duke/USA,6-8,jalen-johnson,219,1,Duke,Y
+Nome,Altura,Peso,Idade,Experiência,Posição,Universidade,País,Salário
+Clint Capela,6-10,256,30,10,Center,Elan Chalon,Switzerland,25
+Trae Young,6-1,164,26,6,Guard,Oklahoma,USA,5
+Jalen Johnson,6-8,219,23,3,Forward,Duke,USA,20
