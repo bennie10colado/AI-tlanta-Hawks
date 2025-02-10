@@ -5,6 +5,7 @@ import time
 SCRIPTS = {
     "Data Engineering": [
         "scripts/data_engineering/fetch_nba_teams.py",
+        "scripts/data_engineering/fetch_nba_players.py",
         "scripts/data_engineering/fetch_nba_standings.py",
         "scripts/data_engineering/fetch_team_games.py",
         "scripts/data_engineering/clean_data.py"

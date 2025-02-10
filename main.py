@@ -6,6 +6,7 @@ from scripts.visualization.teams.team_dashboard import start_dashboard
 
 # Importação dos módulos de engenharia de dados
 from scripts.data_engineering.fetch_nba_teams import fetch_nba_teams
+from scripts.data_engineering.fetch_nba_players import fetch_nba_players
 from scripts.data_engineering.fetch_nba_standings import fetch_nba_standings
 from scripts.data_engineering.fetch_team_games import fetch_team_games
 from scripts.data_engineering.clean_nba_data import clean_nba_data
@@ -42,6 +43,7 @@ if __name__ == "__main__":
 
     # 🚀 1. Data Engineering
     executar_modulo("Coleta de Times da NBA (RF1)", fetch_nba_teams)
+    executar_modulo("Coleta de Jogadores do Atlanta (RF1, PT2)", fetch_nba_players)
     executar_modulo("Coleta da Classificação Atual (RF2)", fetch_nba_standings)
     executar_modulo("Coleta de Jogos (RF7)", lambda: fetch_team_games(1610612737))
     

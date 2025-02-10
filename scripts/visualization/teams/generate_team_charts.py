@@ -49,7 +49,7 @@ def generate_team_charts():
 
             ## ✅ 3. Gráfico de Histograma
             plt.figure(figsize=(8, 6))
-            plt.hist([total_vitorias, total_derrotas], bins=2, color=["green", "red"], alpha=0.7, label=["Vitórias", "Derrotas"])
+            plt.hist([total_vitorias, total_derrotas], bins=2, color=["green"], alpha=0.7, label=["Vitórias", "Derrotas"], stacked=True)
             plt.title(f"Frequência de Vitórias e Derrotas - {season}")
             plt.xlabel("Quantidade")
             plt.ylabel("Frequência")
