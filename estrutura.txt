@@ -1,26 +1,61 @@
 ﻿Listagem de caminhos de pasta
-O número de série do volume é 2218-F7DD
 C:.
 │   .gitignore
 │   estrutura.txt
+│   main.py
 │   README.md
 │   requirements.txt
 │   run.py
 │   
 ├───data
-│       clean_games_2023-24.csv
-│       clean_games_2024-25.csv
-│       games_2023-24.csv
-│       games_2024-25.csv
-│       nba_hawks_stats.csv
-│       nba_teams.csv
-│       team_stats_2023-24.csv
-│       team_stats_2024-25.csv
-│       
+│   │   clean_games_2023-24.csv
+│   │   clean_games_2024-25.csv
+│   │   defensive_stats_2023-24.csv
+│   │   defensive_stats_2024-25.csv
+│   │   games_2023-24.csv
+│   │   games_2024-25.csv
+│   │   games_summary_2023-24.csv
+│   │   games_summary_2024-25.csv
+│   │   nba_standings.csv
+│   │   nba_teams.csv
+│   │   offensive_stats_2023-24.csv
+│   │   offensive_stats_2024-25.csv
+│   │   player_game_logs_2024-25.csv
+│   │   player_game_logs_filtered_2024-25.csv
+│   │   player_stats.csv
+│   │   rebound_stats_2023-24.csv
+│   │   rebound_stats_2024-25.csv
+│   │   team_stats_2023-24.csv
+│   │   team_stats_2024-25.csv
+│   │   
+│   └───charts
+│       ├───2023-24
+│       │       barras_agrupadas.png
+│       │       barras_empilhadas.png
+│       │       dispersao.png
+│       │       histograma.png
+│       │       linhas.png
+│       │       pizza.png
+│       │       radar.png
+│       │       rf6_rf7.png
+│       │       
+│       └───2024-25
+│               barras_agrupadas.png
+│               barras_empilhadas.png
+│               dispersao.png
+│               histograma.png
+│               linhas.png
+│               pizza.png
+│               radar.png
+│               rf6_rf7.png
+│               
 ├───docs
 │       Projeto - Parte 1.pdf
 │       Projeto - Parte 2.pdf
 │       Projeto - Parte 3.pdf
+│       
+├───logs
+│       errors.log
 │       
 ├───scripts
 │   │   analyze_data.py
@@ -28,25 +63,44 @@ C:.
 │   │   
 │   ├───analysis
 │   │   ├───players
-│   │   │       analyze_players.py
 │   │   │       career_comparison.py
 │   │   │       individual_performance.py
+│   │   │       player_statistics.py
 │   │   │       
 │   │   └───teams
-│   │           analyze_team_performance.py
-│   │           defensive_stats.py
-│   │           games_summary.py
-│   │           offensive_stats.py
-│   │           
+│   │       │   analyze_team_performance.py
+│   │       │   defensive_stats.py
+│   │       │   games_summary.py
+│   │       │   offensive_stats.py
+│   │       │   rebound_stats.py
+│   │       │   
+│   │       └───__pycache__
+│   │               analyze_team_performance.cpython-310.pyc
+│   │               defensive_stats.cpython-310.pyc
+│   │               games_summary.cpython-310.pyc
+│   │               offensive_stats.cpython-310.pyc
+│   │               rebound_stats.cpython-310.pyc
+│   │               
 │   ├───dashboard
 │   │       app.py
 │   │       
 │   ├───data_engineering
-│   │       clean_data.py
-│   │       fetch_nba_standings.py
-│   │       fetch_nba_teams.py
-│   │       fetch_team_games.py
-│   │       
+│   │   │   clean_nba_data.py
+│   │   │   fetch_nba_players.py
+│   │   │   fetch_nba_standings.py
+│   │   │   fetch_nba_teams.py
+│   │   │   fetch_player_game_logs.py
+│   │   │   fetch_team_games.py
+│   │   │   filter_player_games.py
+│   │   │   
+│   │   └───__pycache__
+│   │           clean_data.cpython-310.pyc
+│   │           clean_nba_data.cpython-310.pyc
+│   │           fetch_nba_players.cpython-310.pyc
+│   │           fetch_nba_standings.cpython-310.pyc
+│   │           fetch_nba_teams.cpython-310.pyc
+│   │           fetch_team_games.cpython-310.pyc
+│   │           
 │   ├───models
 │   │       gamlss_prediction.py
 │   │       gumbel_model.py
@@ -59,7 +113,11 @@ C:.
 │       │       player_dashboard.py
 │       │       
 │       └───teams
-│               generate_team_charts.py
-│               team_dashboard.py
-│               
+│           │   generate_team_charts.py
+│           │   team_dashboard.py
+│           │   
+│           └───__pycache__
+│                   generate_team_charts.cpython-310.pyc
+│                   team_dashboard.cpython-310.pyc
+│                   
 └───venv
