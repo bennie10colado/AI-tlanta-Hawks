@@ -1,5 +1,6 @@
 # RF10 - PROJ 2
 import streamlit as st
+import matplotlib.pyplot as plt
 import pandas as pd
 import os
 
@@ -23,6 +24,7 @@ def start_player_dashboard():
     # 📂 Caminhos dos arquivos de dados e gráficos
     image_dir = f"data/charts/{season}"
     player_file_path = f"data/player_stats.csv"
+    game_logs_path = f"data/game_logs.csv"
     player_game_logs_path = f"data/player_game_logs_{season}.csv"
     player_career_comparison_path = f"data/player_career_comparison_{season}.csv"
 
@@ -46,6 +48,33 @@ def start_player_dashboard():
                 st.dataframe(df, height=200)
             else:
                 st.warning(f"⚠ Arquivo **{title}** não encontrado!")
+
+
+        df = load_data(game_logs_path)
+        # Sidebar para seleção do time adversário
+        opponent_selected = st.selectbox("Escolha um time adversário:", ["Todos"] + sorted(df["Adversário"].unique()))
+
+        # Filtrar os jogos do adversário escolhido
+        if opponent_selected != "Todos":
+            df_filtered = df[df["Adversário"] == opponent_selected]
+        else:
+            df_filtered = df
+
+        # Contar jogos dentro e fora de casa
+        home_away_counts = df_filtered["Casa/Fora"].value_counts()
+
+        # Exibir tabela de resultados
+        st.write("### 📊 Quantidade de Jogos Dentro e Fora de Casa RF4")
+        st.write(df_filtered)
+
+        # Criar gráfico de barras
+        fig, ax = plt.subplots(figsize=(5, 3))
+        home_away_counts.plot(kind="bar", color=["blue", "red"], ax=ax)
+        ax.set_ylabel("Número de Jogos")
+        ax.set_xlabel("Localização do Jogo")
+        ax.set_title("Quantidade de Jogos Dentro e Fora de Casa")
+        st.pyplot(fig, use_container_width=False)
+
 
     # 📈 ABA 2 - Gráficos de Desempenho dos Jogadores
     with tab2:
