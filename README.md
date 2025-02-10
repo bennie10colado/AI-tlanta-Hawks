@@ -93,13 +93,10 @@ streamlit run scripts/dashboard/app.py
 
 ## 📊 **Example Graphs**
 ### 📈 **Gumbel Analysis - Extreme Events**
-![Gumbel Analysis](https://via.placeholder.com/600x400?text=Gumbel+Extreme+Events)
 
 ### 📊 **Regression Model Predictions**
-![Regression Model](https://via.placeholder.com/600x400?text=Regression+Predictions)
 
 ### 🤖 **GAMLSS Next-Game Predictions**
-![GAMLSS Predictions](https://via.placeholder.com/600x400?text=GAMLSS+Predictions)
 
 ---
 
