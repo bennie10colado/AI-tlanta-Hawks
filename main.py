@@ -59,7 +59,7 @@ if __name__ == "__main__":
         executar_modulo(f"Resumo dos Jogos (RF7) - {season}", lambda: generate_games_summary(season))
 
     # 🚀 3. Geração de Gráficos
-    executar_modulo("Geração de Gráficos do Time (RF8)", generate_team_charts)
+    executar_modulo("Geração de Gráficos do Time (RF8)", generate_team_charts(season))
 
     # 🚀 4. Inicializar Dashboard com Streamlit
     print("\n✅ Pipeline concluído com sucesso! 🎉")

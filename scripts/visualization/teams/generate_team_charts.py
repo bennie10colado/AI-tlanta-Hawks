@@ -1,65 +1,76 @@
-# RF8, RF9, RF10 - PROJ 1
+# RF8 - PROJ 1
 import pandas as pd
-import matplotlib.pyplot as plt
 import os
-import plotly.express as px
-import plotly.graph_objects as go
+import matplotlib.pyplot as plt
+import seaborn as sns
+import numpy as np
 
-def generate_team_charts():
-    """Gera e salva os gráficos de desempenho da equipe para exibição no Streamlit."""
-    for season in ["2023-24", "2024-25"]:
-        file_path = f"data/team_stats_{season}.csv"
-        output_dir = f"data/graphs/{season}"
-        os.makedirs(output_dir, exist_ok=True)
+def generate_team_charts(season, team_name="Atlanta Hawks"):
+    """Gera gráficos de desempenho do time para compor o Dashboard do projeto."""
+    
+    # Caminhos dos arquivos
+    stats_path = f"data/team_stats_{season}.csv"
+    games_path = f"data/games_summary_{season}.csv"
 
-        try:
-            if not os.path.exists(file_path):
-                raise FileNotFoundError(f"🚨 O arquivo {file_path} não foi encontrado!")
+    # Verificar se os arquivos existem
+    if not os.path.exists(stats_path) or not os.path.exists(games_path):
+        print(f"❌ Arquivos necessários não encontrados para {season}.")
+        return
 
-            df = pd.read_csv(file_path)
+    # Carregar os dados
+    df_stats = pd.read_csv(stats_path)
+    df_games = pd.read_csv(games_path)
 
-            print(f"📊 Colunas disponíveis no dataset {season}: {df.columns.tolist()}")
+    # 🔍 Verificar as colunas disponíveis
+    print(f"📊 Colunas disponíveis em team_stats_{season}: {df_stats.columns.tolist()}")
 
-            # Garantir que as colunas necessárias existem e são numéricas
-            colunas = ["Vitórias Casa", "Vitórias Fora", "Derrotas Casa", "Derrotas Fora"]
-            df[colunas] = df[colunas].apply(pd.to_numeric, errors="coerce").fillna(0)
+    # 🔹 Gráfico 1: Barras Empilhadas - Vitórias e Derrotas
+    plt.figure(figsize=(8, 5))
+    plt.bar(["Total"], df_stats["Total Vitórias"], color="green", label="Vitórias")
+    plt.bar(["Total"], df_stats["Total Derrotas"], color="red", bottom=df_stats["Total Vitórias"], label="Derrotas")
+    plt.title(f"Vitórias e Derrotas - {season}")
+    plt.legend()
+    plt.savefig(f"data/charts/{season}_barras_empilhadas.png")
+    plt.close()
 
-            total_vitorias = df["Vitórias Casa"].sum() + df["Vitórias Fora"].sum()
-            total_derrotas = df["Derrotas Casa"].sum() + df["Derrotas Fora"].sum()
+    # 🔹 Gráfico 2: Barras Agrupadas - Casa/Fora
+    labels = ["Vitórias Casa", "Vitórias Fora", "Derrotas Casa", "Derrotas Fora"]
+    values = [
+        df_stats["Vitórias Casa"].values[0], df_stats["Vitórias Fora"].values[0],
+        df_stats["Derrotas Casa"].values[0], df_stats["Derrotas Fora"].values[0]
+    ]
+    colors = ["green", "blue", "red", "brown"]
+    
+    plt.figure(figsize=(8, 5))
+    sns.barplot(x=labels, y=values, hue=labels, palette=colors, legend=False)
+    plt.title(f"Desempenho em Casa e Fora - {season}")
+    plt.savefig(f"data/charts/{season}_barras_agrupadas.png")
+    plt.close()
 
-            ## ✅ 1. Gráfico de Barras Empilhado (Vitórias x Derrotas)
-            plt.figure(figsize=(8, 6))
-            categorias = ["Vitórias", "Derrotas"]
-            valores = [total_vitorias, total_derrotas]
-            cores = ["green", "red"]
-            plt.bar(categorias, valores, color=cores)
-            plt.title(f"Vitórias e Derrotas - {season}")
-            plt.ylabel("Quantidade")
-            plt.savefig(f"{output_dir}/barras_empilhado.png", dpi=300, bbox_inches="tight")
-            plt.close()
+    # 🔹 Gráfico 3: Histograma de Vitórias e Derrotas
+    plt.figure(figsize=(8, 5))
+    sns.histplot(df_games["Vitória/Derrota"], bins=2, color="purple")
+    plt.title(f"Frequência de Vitórias e Derrotas - {season}")
+    plt.savefig(f"data/charts/{season}_histograma.png")
+    plt.close()
 
-            ## ✅ 2. Gráfico de Barras Agrupado (Casa e Fora)
-            plt.figure(figsize=(8, 6))
-            valores_casa_fora = [df[col].sum() for col in colunas]
-            plt.bar(colunas, valores_casa_fora, color=["green", "blue", "red", "brown"])
-            plt.title(f"Vitórias e Derrotas (Casa/Fora) - {season}")
-            plt.ylabel("Quantidade")
-            plt.savefig(f"{output_dir}/barras_agrupado.png", dpi=300, bbox_inches="tight")
-            plt.close()
+    # 🔹 Gráfico 4: Pizza - Percentual de Vitórias/Derrotas Casa/Fora
+    plt.figure(figsize=(8, 5))
+    plt.pie(values, labels=labels, colors=colors, autopct='%1.1f%%', startangle=90)
+    plt.title(f"Distribuição de Vitórias e Derrotas - {season}")
+    plt.savefig(f"data/charts/{season}_pizza.png")
+    plt.close()
 
-            ## ✅ 3. Gráfico de Histograma
-            plt.figure(figsize=(8, 6))
-            plt.hist([total_vitorias, total_derrotas], bins=2, color=["green", "red"], alpha=0.7, label=["Vitórias", "Derrotas"])
-            plt.title(f"Frequência de Vitórias e Derrotas - {season}")
-            plt.xlabel("Quantidade")
-            plt.ylabel("Frequência")
-            plt.legend()
-            plt.savefig(f"{output_dir}/histograma.png", dpi=300, bbox_inches="tight")
-            plt.close()
+    # 🔹 Gráfico 5: Linhas - Sequência de Vitórias/Derrotas
+    plt.figure(figsize=(10, 5))
+    sns.lineplot(x=range(len(df_games)), y=df_games["Vitória/Derrota"].map({"Vitória": 1, "Derrota": 0}), marker="o")
+    plt.title(f"Sequência de Vitórias e Derrotas - {season}")
+    plt.savefig(f"data/charts/{season}_linhas.png")
+    plt.close()
 
-
-        except Exception as e:
-            print(f"❌ Erro ao gerar gráficos para {season}: {e}")
+    print(f"✅ Gráficos gerados para {season} e salvos em 'data/charts/'")
 
 if __name__ == "__main__":
-    generate_team_charts()
+    os.makedirs("data/charts", exist_ok=True)
+    generate_team_charts("2023-24")
+    generate_team_charts("2024-25")

@@ -38,7 +38,7 @@ def generate_games_summary(season, team_name="Atlanta Hawks"):
         # Renomear colunas conforme a Tabela 6
         df_summary.rename(columns={
             "GAME_DATE": "Data do Jogo",
-            "OPPONENT": "Adversário",
+            "OPPONENT": "Adversário", #TODO: as vezes, o código invés de colocar somente o nome do time inimigo, ele coloca como "ATL vs. MIL, ATL vs. SAS..." invés de somente "MIL ou SAS"
             "WL": "Vitória/Derrota",
             "HOME_AWAY": "Casa/Fora",
             "PTS": "Placar",
