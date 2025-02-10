@@ -1,4 +1,4 @@
-# RF9, RF10 - PROJ 1
+# RF10 - PROJ 1
 import streamlit as st
 import pandas as pd
 import os
@@ -11,13 +11,6 @@ def load_data(file_path):
         return pd.read_csv(file_path)
     return None
 
-def load_html(file_path):
-    """Carrega e exibe arquivos HTML no Streamlit"""
-    if os.path.exists(file_path):
-        with open(file_path, "r", encoding="utf-8") as f:
-            return f.read()
-    return None
-
 def start_dashboard():
     """Inicializa o Dashboard do Atlanta Hawks no Streamlit"""
     st.set_page_config(page_title="NBA Dashboard - Atlanta Hawks", layout="wide")
@@ -28,77 +21,51 @@ def start_dashboard():
     season = st.selectbox("📅 Selecione a Temporada:", ["2023-24", "2024-25"])
 
     # 📂 Caminhos dos arquivos de dados e gráficos
-    file_path = f"data/team_stats_{season}.csv"
-    image_dir = f"data/graphs/{season}"
+    image_dir = f"data/charts/{season}"
 
     # 🚀 Criando abas de navegação
     tab1, tab2 = st.tabs(["📊 Estatísticas", "📈 Gráficos"])
 
     # 📊 ABA 1 - Estatísticas do Time
     with tab1:
-        df_stats = load_data(file_path)
+        st.subheader(f"📋 Estatísticas da Temporada {season}")
 
-        if df_stats is not None:
-            st.write(f"### 📋 Estatísticas da Temporada {season}")
-            st.dataframe(df_stats, height=300)
-        else:
-            st.warning(f"⚠ Arquivo de estatísticas para {season} não encontrado! Execute a análise de desempenho primeiro.")
+        # 📄 Carregar os CSVs de estatísticas
+        stats_files = {
+            "Estatísticas Gerais": f"data/team_stats_{season}.csv",
+            "Resumo de Jogos": f"data/games_summary_{season}.csv",
+            "Estatísticas Defensivas": f"data/defensive_stats_{season}.csv"
+        }
+
+        for title, file_path in stats_files.items():
+            df = load_data(file_path)
+            if df is not None:
+                st.write(f"### {title}")
+                st.dataframe(df, height=200)
+            else:
+                st.warning(f"⚠ Arquivo **{title}** não encontrado!")
 
     # 📈 ABA 2 - Gráficos de Desempenho
     with tab2:
         st.subheader(f"📈 Gráficos de Desempenho - {season}")
 
-        # 📊 Gráfico 1: Barras Empilhadas para Vitórias e Derrotas
-        empilhadas_path = f"{image_dir}/barras_empilhado.png"
-        if os.path.exists(empilhadas_path):
-            st.image(empilhadas_path, caption="Vitórias x Derrotas")
-        else:
-            st.warning("⚠ Gráfico de Vitórias x Derrotas não encontrado!")
+        # Lista de gráficos com seus respectivos nomes e caminhos corrigidos
+        charts = {
+            "Vitórias x Derrotas (Empilhado)": f"{image_dir}/barras_empilhadas.png",
+            "Desempenho Casa/Fora (Barras)": f"{image_dir}/barras_agrupadas.png",
+            "Frequência de Vitórias e Derrotas (Histograma)": f"{image_dir}/histograma.png",
+            "Distribuição de Vitórias e Derrotas (Pizza)": f"{image_dir}/pizza.png",
+            "Radar - Roubos e Faltas": f"{image_dir}/radar.png",
+            "Sequência de Vitórias e Derrotas (Linhas)": f"{image_dir}/linhas.png",
+            "Roubos de Bola x Erros por Jogo (Dispersão)": f"{image_dir}/dispersao.png",
+            "Vitórias e Derrotas por Local (RF6 e RF7)": f"{image_dir}/rf6_rf7.png"
+        }
 
-        # 📊 Gráfico 2: Barras Agrupadas para Casa/Fora
-        agrupadas_path = f"{image_dir}/barras_agrupado.png"
-        if os.path.exists(agrupadas_path):
-            st.image(agrupadas_path, caption="Desempenho em Casa e Fora")
-        else:
-            st.warning("⚠ Gráfico de Casa/Fora não encontrado!")
-
-        # 📊 Gráfico 3: Histograma de Vitórias e Derrotas
-        histograma_path = f"{image_dir}/histograma.png"
-        if os.path.exists(histograma_path):
-            st.image(histograma_path, caption="Frequência de Vitórias e Derrotas")
-        else:
-            st.warning("⚠ Gráfico de Frequência não encontrado!")
-
-        # 🥧 Gráfico 4: Pizza - Percentual de Vitórias e Derrotas
-        pizza_path = f"{image_dir}/pizza.html"
-        pizza_html = load_html(pizza_path)
-        if pizza_html:
-            st.components.v1.html(pizza_html, height=500)
-        else:
-            st.warning("⚠ Gráfico de Pizza não encontrado!")
-
-        # 📌 Gráfico 5: Radar - Pontuação Marcada e Sofrida
-        radar_path = f"{image_dir}/radar.html"
-        radar_html = load_html(radar_path)
-        if radar_html:
-            st.components.v1.html(radar_html, height=500)
-        else:
-            st.warning("⚠ Gráfico de Radar não encontrado!")
-
-        # 📉 Gráfico 6: Linha - Sequência de Vitórias e Derrotas
-        sequencia_path = f"{image_dir}/sequencia.png"
-        if os.path.exists(sequencia_path):
-            st.image(sequencia_path, caption="Sequência de Vitórias e Derrotas")
-        else:
-            st.warning("⚠ Gráfico de Sequência não encontrado!")
-
-        # 🎯 Gráfico 7: Dispersão - Pontos Marcados e Sofridos
-        dispersao_path = f"{image_dir}/dispersao.html"
-        dispersao_html = load_html(dispersao_path)
-        if dispersao_html:
-            st.components.v1.html(dispersao_html, height=500)
-        else:
-            st.warning("⚠ Gráfico de Dispersão não encontrado!")
+        for title, file_path in charts.items():
+            if os.path.exists(file_path):
+                st.image(file_path, caption=title)
+            else:
+                st.warning(f"⚠ {title} não encontrado!")
 
     st.write("📊 Os gráficos são gerados automaticamente e exibidos no dashboard.")
 
