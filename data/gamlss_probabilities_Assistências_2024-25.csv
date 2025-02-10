@@ -1,0 +1,6 @@
+Estatística,Métrica,Valor,Probabilidade Acima (Poisson),Probabilidade Abaixo (Poisson),Probabilidade Exata (Poisson),Probabilidade Acima (Linear),Probabilidade Abaixo (Linear),Probabilidade Exata (Linear)
+Assistências,mean,1.6397140056002313e-16,1.0,0.0,0.0,0.7230769230769231,0.27692307692307694,0.0
+Assistências,median,-0.2122839213290144,1.0,0.0,0.0,1.0,0.0,0.0
+Assistências,mode,-0.9735779840261698,1.0,0.0,0.0,1.0,0.0,0.0
+Assistências,max,3.023215845133896,0.0,1.0,0.0,0.0,1.0,0.0
+Assistências,min,-1.1639014997004586,1.0,0.0,0.0,1.0,0.0,0.0

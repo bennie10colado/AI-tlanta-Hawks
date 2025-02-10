@@ -1,6 +1,7 @@
 import time
 import os
 import logging
+from scripts.analysis.models.gamlss_analysis import gamlss_analysis
 from scripts.data_engineering.preprocess_data import preprocess_data
 from scripts.analysis.models.gumbel_analysis import gumbel_analysis
 from scripts.analysis.models.linear_regression import linear_regression_analysis
@@ -26,5 +27,7 @@ if __name__ == "__main__":
     executar_modulo("Análise Estatística (Gumbel)", gumbel_analysis)
     executar_modulo("Regressão Linear", linear_regression_analysis)
     executar_modulo("Regressão Logística", logistic_regression_analysis)
+    executar_modulo("GAMLSS: Generalized Additive Models for Location Scale and Shape", gamlss_analysis)
 
     print("\n✅ Pipeline concluído com sucesso! 🎉")
+    os.system("streamlit run scripts/dashboard/app.py")

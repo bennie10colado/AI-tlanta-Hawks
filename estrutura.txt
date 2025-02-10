@@ -1,4 +1,5 @@
 ﻿Listagem de caminhos de pasta
+O número de série do volume é 2218-F7DD
 C:.
 │   .gitignore
 │   estrutura.txt
@@ -19,6 +20,9 @@ C:.
 │   │   games_played_stats_2024-25.csv
 │   │   games_summary_2023-24.csv
 │   │   games_summary_2024-25.csv
+│   │   gumbel_analysis_2024-25.csv
+│   │   linear_regression_results_2024-25.csv
+│   │   logistic_regression_results_2024-25.csv
 │   │   nba_standings.csv
 │   │   nba_teams.csv
 │   │   offensive_stats_2023-24.csv
@@ -29,35 +33,62 @@ C:.
 │   │   player_performance_stats_2024-25.csv
 │   │   player_statistics_2024-25.csv
 │   │   player_stats.csv
+│   │   probabilities_2024-25.csv
+│   │   processed_player_game_logs_2024-25.csv
 │   │   rebound_stats_2023-24.csv
 │   │   rebound_stats_2024-25.csv
 │   │   team_stats_2023-24.csv
 │   │   team_stats_2024-25.csv
 │   │   
-│   └───charts
-│       ├───2023-24
-│       │       barras_agrupadas.png
-│       │       barras_empilhadas.png
-│       │       dispersao.png
-│       │       histograma.png
-│       │       linhas.png
-│       │       pizza.png
-│       │       radar.png
-│       │       rf6_rf7.png
+│   ├───charts
+│   │   ├───2023-24
+│   │   │       barras_agrupadas.png
+│   │   │       barras_empilhadas.png
+│   │   │       dispersao.png
+│   │   │       histograma.png
+│   │   │       linhas.png
+│   │   │       pizza.png
+│   │   │       radar.png
+│   │   │       rf6_rf7.png
+│   │   │       
+│   │   └───2024-25
+│   │           barras_agrupadas.png
+│   │           barras_empilhadas.png
+│   │           boxplot_stats.png
+│   │           dispersao.png
+│   │           distribuicao_assistencias.png
+│   │           distribuicao_pontos.png
+│   │           distribuicao_rebotes.png
+│   │           histograma.png
+│   │           linhas.png
+│   │           pizza.png
+│   │           radar.png
+│   │           rf6_rf7.png
+│   │           
+│   └───proj3
+│       ├───gumbel_plots_2024-25
+│       │       gumbel_assistências.png
+│       │       gumbel_pontos.png
+│       │       gumbel_rebotes.png
 │       │       
-│       └───2024-25
-│               barras_agrupadas.png
-│               barras_empilhadas.png
-│               boxplot_stats.png
-│               dispersao.png
-│               distribuicao_assistencias.png
-│               distribuicao_pontos.png
-│               distribuicao_rebotes.png
-│               histograma.png
-│               linhas.png
-│               pizza.png
-│               radar.png
-│               rf6_rf7.png
+│       ├───linear_regression_plots_2024-25
+│       │       confusion_matrix_assistências.png
+│       │       confusion_matrix_pontos.png
+│       │       confusion_matrix_rebotes.png
+│       │       regression_assistências.png
+│       │       regression_pontos.png
+│       │       regression_rebotes.png
+│       │       
+│       └───logistic_regression_plots_2024-25
+│               coeficients_assistências.csv
+│               coeficients_pontos.csv
+│               coeficients_rebotes.csv
+│               confusion_matrix_assistências.png
+│               confusion_matrix_pontos.png
+│               confusion_matrix_rebotes.png
+│               roc_curve_assistências.png
+│               roc_curve_pontos.png
+│               roc_curve_rebotes.png
 │               
 ├───docs
 │       Projeto - Parte 1.pdf
@@ -81,6 +112,7 @@ C:.
 │   │   │   └───__pycache__
 │   │   │           gumbel_analysis.cpython-310.pyc
 │   │   │           linear_regression.cpython-310.pyc
+│   │   │           logistic_regression.cpython-310.pyc
 │   │   │           
 │   │   ├───players
 │   │   │   │   analyze_player_career.py

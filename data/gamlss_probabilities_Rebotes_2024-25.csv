@@ -1,0 +1,6 @@
+Estatística,Métrica,Valor,Probabilidade Acima (Poisson),Probabilidade Abaixo (Poisson),Probabilidade Exata (Poisson),Probabilidade Acima (Linear),Probabilidade Abaixo (Linear),Probabilidade Exata (Linear)
+Rebotes,mean,6.148927521000867e-17,1.0,0.0,0.0,0.7846153846153846,0.2153846153846154,0.0
+Rebotes,median,-0.0160559236346042,1.0,0.0,0.0,0.8307692307692308,0.16923076923076924,0.0
+Rebotes,mode,-0.7118126144674576,1.0,0.0,0.0,1.0,0.0,0.0
+Rebotes,max,2.30313304580824,0.0,1.0,0.0,0.0,1.0,0.0
+Rebotes,min,-1.6394882022445951,1.0,0.0,0.0,1.0,0.0,0.0
