@@ -1,72 +1,115 @@
 # 🏀 AI-tlanta Hawks
 
-A simple Data Science project for analyzing the performance of the Atlanta Hawks in the NBA.
+A Data Science and Machine Learning project for analyzing the performance of the **Atlanta Hawks** in the NBA.
 
 ## 📌 Objective
-This project focuses on collecting, processing, and visualizing NBA statistics to analyze the **Atlanta Hawks** team.
+This project collects, processes, and visualizes NBA statistics, implementing **Machine Learning models** for performance predictions.
 
 ## 🏗️ Project Structure
 
 ```
 📂 AI-tlanta-Hawks/
-│── 📂 data/                 # Stores generated CSV files
+│── 📂 data/                 # Stores datasets and generated CSV files
 │── 📂 scripts/              # Main scripts
-│   ├── fetch_nba_data.py   # Fetches NBA data from the API
-│   ├── analyze_data.py     # Performs data analysis
-│   ├── visualize.py        # Generates graphs
-│── 📜 README.md            # Project documentation
-│── 📜 requirements.txt     # Dependencies
-│── 📜 run.py               # Main script to run everything
+│   ├── data_engineering/    # Data collection and preprocessing
+│   ├── analysis/models/     # Machine learning and statistical models
+│   ├── visualization/       # Graph generation
+│   ├── dashboard/           # Streamlit dashboard scripts
+│── 📂 logs/                 # Stores error logs
+│── 📜 README.md             # Project documentation
+│── 📜 requirements.txt      # Dependencies
+│── 📜 main.py               # Runs Project Part 1 (Team Analysis)
+│── 📜 main2.py              # Runs Project Part 2 (Player Analysis)
+│── 📜 main3.py              # Runs Project Part 3 (Machine Learning)
 ```
 
 ## 🛠️ Technologies Used
-- **Python** (`requests`, `pandas`, `matplotlib`)
-- **NBA API** for data collection
+- **Python 3.10**
+- **NumPy, Pandas** (Data Processing)
+- **Matplotlib, Seaborn** (Visualization)
+- **Scikit-learn** (Machine Learning)
+- **PyGAM** (Generalized Additive Models)
+- **Streamlit** (Dashboard)
+
+---
 
 ## 🚀 How to Run the Project
-### 1️⃣ **Clone the repository**
-```bash
+### 🏗 **1️⃣ Install WSL (Windows Only)**
+If using **Windows**, enable **Windows Subsystem for Linux (WSL)** to ensure compatibility:
+```sh
+wsl --install
+```
+Then, open **WSL** and follow the next steps.
+
+### 📥 **2️⃣ Clone the Repository**
+```sh
 git clone https://github.com/your-username/AI-tlanta-Hawks.git
 cd AI-tlanta-Hawks
 ```
 
-### 2️⃣ **Create a virtual environment and install dependencies**
-```bash
-python -m venv venv
+### 🛠 **3️⃣ Create a Virtual Environment**
+```sh
+python3.10 -m venv venv
 source venv/bin/activate  # Linux/Mac
-venv\Scripts\activate  # Windows
+venv\Scripts\activate     # Windows
+```
 
+### 📦 **4️⃣ Install Dependencies**
+```sh
 pip install -r requirements.txt
 ```
 
-### 3️⃣ **Run the project**
-```bash
-python run.py
+---
+
+## 🎯 **How to Run Each Part of the Project**
+### ✅ **Project Part 1 - Team Analysis**
+```sh
+python main.py
+```
+✔ **Streamlit Dashboard for Team Analysis**:  
+```sh
+streamlit run scripts/visualization/teams/team_dashboard.py
 ```
 
-This will:
-✅ **Fetch NBA data from the API**  
-✅ **Analyze the data**  
-✅ **Generate visualizations**  
-
-### 4️⃣ **Run individual scripts manually**
-```bash
-python scripts/fetch_nba_data.py   # Collect NBA data
-python scripts/analyze_data.py     # Run basic statistics
-python scripts/visualize.py        # Generate charts
+### ✅ **Project Part 2 - Player Analysis**
+```sh
+python main2.py
+```
+✔ **Streamlit Dashboard for Player Analysis**:  
+```sh
+streamlit run scripts/visualization/players/player_dashboard.py
 ```
 
-## 📊 Example Graph
-This project generates simple graphs, such as the **win/loss performance of the Atlanta Hawks**.
-
-![Example Graph](https://via.placeholder.com/600x400?text=Graph+Example)
-
-## 🏀 Future Improvements
-- Add more advanced statistics  
-- Include historical analysis  
-- Improve data visualizations  
+### ✅ **Project Part 3 - Machine Learning & Predictions**
+```sh
+python main3.py
+```
+✔ **Streamlit Dashboard with ML Results**:  
+```sh
+streamlit run scripts/dashboard/app.py
+```
 
 ---
+
+## 📊 **Example Graphs**
+### 📈 **Gumbel Analysis - Extreme Events**
+![Gumbel Analysis](https://via.placeholder.com/600x400?text=Gumbel+Extreme+Events)
+
+### 📊 **Regression Model Predictions**
+![Regression Model](https://via.placeholder.com/600x400?text=Regression+Predictions)
+
+### 🤖 **GAMLSS Next-Game Predictions**
+![GAMLSS Predictions](https://via.placeholder.com/600x400?text=GAMLSS+Predictions)
+
+---
+
+## 🏀 **Possible Future Improvements**
+- Add **real-time data updates** using an API  
+- Improve **ML model accuracy** by refining features  
+- Expand **dashboard** to include interactive filtering  
+
+---
+
 ### 🎯 **Final Notes**
-This project is a **lightweight, easy-to-run** Python-based NBA analytics tool.  
-Enjoy analyzing the **Atlanta Hawks' performance!** 🚀🔥🏀
+This project is a **complete data-driven analysis** of the **Atlanta Hawks**.  
+It combines **statistics, machine learning, and interactive visualizations**! 🚀🔥🏀  
