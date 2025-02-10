@@ -21,13 +21,11 @@ def start_dashboard():
     season = st.selectbox("📅 Selecione a Temporada:", ["2023-24", "2024-25"])
 
     # 📂 Caminhos dos arquivos de dados e gráficos
-
-    file_path = f"data/team_stats_{season}.csv"
-    image_dir = f"data/graphs/{season}"
-    player_file_path = f"data/player_stats.csv"
+    image_dir = f"data/charts/{season}"
+    player_file_path = "data/player_stats.csv"
 
     # 🚀 Criando abas de navegação
-    tab1, tab2, tab3 = st.tabs(["📊 Estatísticas", "📈 Gráficos", "Jogadores"])
+    tab1, tab2, tab3 = st.tabs(["📊 Estatísticas", "📈 Gráficos", "👤 Jogadores"])
 
     # 📊 ABA 1 - Estatísticas do Time
     with tab1:
@@ -72,13 +70,17 @@ def start_dashboard():
 
     st.write("📊 Os gráficos são gerados automaticamente e exibidos no dashboard.")
 
-    # ABA 3 - Info dos jogadores
+    # 📌 ABA 3 - Informações dos Jogadores
     with tab3:
+        st.subheader("👤 Estatísticas dos Jogadores")
+
         df_stats = load_data(player_file_path)
 
         if df_stats is not None:
-            st.write(f"### info dos players")
+            st.write(f"### Estatísticas dos Jogadores")
             st.dataframe(df_stats, height=300)
+        else:
+            st.warning("⚠ Arquivo de estatísticas dos jogadores não encontrado!")
 
 if __name__ == "__main__":
     start_dashboard()
