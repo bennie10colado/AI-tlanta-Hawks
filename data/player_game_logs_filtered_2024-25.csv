@@ -1,7 +1,7 @@
-Jogador,Data do Jogo,Adversário,Vitória/Derrota,Casa/Fora,Pontos,Rebotes,Assistências,Tentativas de 3 PTS,Cestas de 3 PTS,Tempo de Permanência do Jogador em Quadra
-Clint Capela,2025-01-03T00:00:00,LAL,L,Away,8,7,2,0,0,22:27
-Clint Capela,2024-12-06T00:00:00,LAL,W,Home,4,4,2,0,0,23:55
-Trae Young,2025-01-03T00:00:00,LAL,L,Away,33,0,9,9,3,35:57
-Trae Young,2024-12-06T00:00:00,LAL,W,Home,31,4,20,13,5,42:05
-Jalen Johnson,2025-01-03T00:00:00,LAL,L,Away,19,8,1,3,1,32:59
-Jalen Johnson,2024-12-06T00:00:00,LAL,W,Home,12,10,7,4,1,34:40
+Jogador,Data do Jogo,Adversário,Vitória/Derrota,Casa/Fora,Pontos,Rebotes,Assistências,Placar do Jogo,Tentativas de 3 PTS,Cestas de 3 PTS,Tempo de Permanência do Jogador em Quadra
+Clint Capela,2025-01-03T00:00:00,LAL,L,Away,8,7,2,OFFLINE,0,0,22:27
+Clint Capela,2024-12-06T00:00:00,LAL,W,Home,4,4,2,OFFLINE,0,0,23:55
+Trae Young,2025-01-03T00:00:00,LAL,L,Away,33,0,9,OFFLINE,9,3,35:57
+Trae Young,2024-12-06T00:00:00,LAL,W,Home,31,4,20,OFFLINE,13,5,42:05
+Jalen Johnson,2025-01-03T00:00:00,LAL,L,Away,19,8,1,OFFLINE,3,1,32:59
+Jalen Johnson,2024-12-06T00:00:00,LAL,W,Home,12,10,7,OFFLINE,4,1,34:40

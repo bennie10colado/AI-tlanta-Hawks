@@ -4,3 +4,7 @@ matplotlib
 seaborn
 streamlit
 plotly
+numpy
+scikit-learn
+scipy
+pygam
