@@ -28,7 +28,7 @@ This project collects, processes, and visualizes NBA statistics, implementing **
 - **NumPy, Pandas** (Data Processing)
 - **Matplotlib, Seaborn** (Visualization)
 - **Scikit-learn** (Machine Learning)
-- **PyGAM** (Generalized Additive Models)
+- **PyGAM 0.9.1** (Generalized Additive Models) 
 - **Streamlit** (Dashboard)
 
 ---
@@ -91,18 +91,7 @@ streamlit run scripts/dashboard/app.py
 
 ---
 
-## 📊 **Example Graphs**
-### 📈 **Gumbel Analysis - Extreme Events**
-
-### 📊 **Regression Model Predictions**
-
-### 🤖 **GAMLSS Next-Game Predictions**
-
----
-
 ## 🏀 **Possible Future Improvements**
-- Add **real-time data updates** using an API  
-- Improve **ML model accuracy** by refining features  
 - Expand **dashboard** to include interactive filtering  
 
 ---
